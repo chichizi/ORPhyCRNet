@@ -197,7 +197,7 @@ def postProcess(output, reso, xmin, xmax, ymin, ymax, num, fig_save_dir):
 if __name__ == '__main__':
     # grid size
     M, N = 256, 256
-    n_simu_steps = 30000
+    n_simu_steps = 1000 #30000
     dt = 0.0001 # maximum 0.003   
     dx = 1.0 / M
     R = 200.0
@@ -224,13 +224,13 @@ if __name__ == '__main__':
     UV = np.concatenate((U_record[None,...], V_record[None,...]), axis=0) # (c,t,h,w)
     UV = np.transpose(UV, [1, 0, 2, 3]) # (t,c,h,w)
 
-    fig_save_dir = './figures/2dBurgers/'
+    fig_save_dir = './figures/2dhamBurgers/'
     for i in range(0, 30):
         postProcess(UV, M, 0, M, 0, M, 50*i, fig_save_dir)
 
     # save data
-    data_save_dir = './data/2dBurgers/'
-    scipy.io.savemat(data_save_dir + 'burgers_1501x2x128x128.mat', {'uv': UV})
+    data_save_dir = './data/2dhamBurgers/'
+    scipy.io.savemat(data_save_dir + 'hamburgers_1501x2x128x128.mat', {'uv': UV})
 
 # [umin, umax] = [-0.7, 0.7]
 # [vmin, vmax] = [-1.0, 1.0]
